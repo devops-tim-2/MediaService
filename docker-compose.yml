@@ -1,0 +1,21 @@
+version: '3'
+networks:
+  apigateway_the_network:
+    external: true
+services:
+  media_service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: 'python main.py'
+    ports:
+      - 8083:5000
+    volumes:
+      - .:/app
+    environment:
+      IMAGE_UPLOAD_PATH: ./upload
+      FLASK_RUN_HOST: 0.0.0.0
+
+    hostname: mediaservice
+    networks:
+      - apigateway_the_network
