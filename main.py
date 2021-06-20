@@ -1,5 +1,5 @@
 
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 
 from os import mkdir, environ
 from os.path import exists, join
@@ -12,6 +12,10 @@ app = Flask(__name__)
 
 if not exists(UPLOAD_FOLDER):
     mkdir(UPLOAD_FOLDER)
+
+@app.route('/<path:path>', methods=['GET'])
+def send(path):
+    return send_from_directory(UPLOAD_FOLDER, path)
 
 @app.route('/', methods=['POST'])
 def upload_file():
