@@ -1,0 +1,21 @@
+<html>
+    <body>
+        <input type="file" id="image">
+
+        <button id="btn">upl0ad</button>
+
+        <script>
+        document.getElementById('btn').addEventListener('click', () => {
+            let photo = document.getElementById("image").files[0];
+            let req = new XMLHttpRequest();
+            let formData = new FormData();
+            formData.append("image", photo);     
+
+            req.open("POST", '/');
+            req.send(formData);
+        })
+        </script>
+
+    </body>
+
+</html>
