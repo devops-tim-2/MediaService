@@ -9,7 +9,7 @@ services:
       dockerfile: Dockerfile
     command: 'python main.py'
     ports:
-      - 8083:5000
+      - 8084:5000
     volumes:
       - .:/app
     environment:
