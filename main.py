@@ -1,6 +1,8 @@
 
 from flask import Flask, request, send_from_directory
 
+from flask_cors import CORS
+
 from os import mkdir, environ
 from os.path import exists, join
 import uuid
@@ -9,6 +11,7 @@ UPLOAD_FOLDER = environ.get('IMAGE_UPLOAD_PATH')
 
 app = Flask(__name__)
 
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000", "send_wildcard": "False"}})
 
 if not exists(UPLOAD_FOLDER):
     mkdir(UPLOAD_FOLDER)
